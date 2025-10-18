@@ -1,3 +1,3 @@
 class AssetsPaths {
-  static const String logo = 'assets/images/logo.jpeg';
+  static const String logo = 'assets/images/logo.png';
 }
