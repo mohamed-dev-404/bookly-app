@@ -1,6 +1,10 @@
+import 'package:bookly/core/constants/constsant.dart';
+import 'package:bookly/features/home/presentation/views/home_view.dart';
 import 'package:bookly/features/splash/presentation/views/widgets/animated_slogan.dart';
 import 'package:bookly/features/splash/presentation/views/widgets/opacity_animated_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -15,16 +19,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   @override
   void initState() {
-    Future.delayed(
-      const Duration(seconds: 1),
-      () {
-        setState(() {
-          opacity = 1;
-          crossFadeState = CrossFadeState.showSecond;
-        });
-      },
-    );
     super.initState();
+    startAnimation();
+    navigateToHome();
   }
 
   @override
@@ -38,6 +35,31 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         ),
         AnimatedSlogan(crossFadeState: crossFadeState),
       ],
+    );
+  }
+
+  void startAnimation() {
+    Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        setState(() {
+          opacity = 1;
+          crossFadeState = CrossFadeState.showSecond;
+        });
+      },
+    );
+  }
+
+  void navigateToHome() {
+    Future.delayed(
+      const Duration(seconds: 4),
+      () {
+        Get.to(
+          () => const HomeView(),
+          transition: Transition.fadeIn,
+          duration: kNavigationDuration,
+        );
+      },
     );
   }
 }
