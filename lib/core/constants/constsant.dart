@@ -1,1 +1,1 @@
-const kNavigationDuration = Duration(milliseconds: 350);
+const kNavigationDuration = Duration(milliseconds: 1000);
