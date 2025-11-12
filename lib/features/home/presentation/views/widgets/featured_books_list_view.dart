@@ -18,16 +18,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final screenHeight = MediaQuery.of(context).size.height;
-    const aspectRatio = 2.75 / 4; //aspectRatio of image in each item
-    const separatorWidth = 14.0; //space between each item
-
-    _normalItemHeight = screenHeight * .28;
-    _focusedItemHeight = screenHeight * .32;
-    final normalWidth =
-        _normalItemHeight *
-        aspectRatio; // item width according to screen hirht and aspectRatio
-    _itemWidth = normalWidth + separatorWidth;
+    _calculateItemWidthAccordingToScreenHightAndItemAspectRatio(context);
   }
 
   @override
@@ -79,5 +70,19 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     if (newIndex != _currentIndex && newIndex >= 0 && newIndex < _itemsCount) {
       setState(() => _currentIndex = newIndex);
     }
+  }
+
+  void _calculateItemWidthAccordingToScreenHightAndItemAspectRatio(
+    BuildContext context,
+  ) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    const aspectRatio = 2.75 / 4; //aspectRatio of image in each item
+    const separatorWidth = 14.0; //space between each item
+    _normalItemHeight = screenHeight * .28;
+    _focusedItemHeight = screenHeight * .32;
+    final normalWidth =
+        _normalItemHeight *
+        aspectRatio; // item width withuot sparator according to screen hight and aspectRatio
+    _itemWidth = normalWidth + separatorWidth; //? full item width
   }
 }
