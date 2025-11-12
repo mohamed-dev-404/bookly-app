@@ -4,28 +4,28 @@ import 'package:flutter/widgets.dart';
 class AppStyles {
   AppStyles._();
 
-  static const textStyle14 = TextStyle(
+  static const text14Regular = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
   );
 
-  static const textStyle16 = TextStyle(
+  static const text16Medium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
-  static const textStyle18 = TextStyle(
+  static const text18SemiBold = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
-  static const textStyle20 = TextStyle(
+  static const text20Regular = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.normal,
     fontFamily: kGtSectraFine,
   );
 
-  static const textStyle30 = TextStyle(
+  static const text30Regular = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.normal,
     fontFamily: kGtSectraFine,
