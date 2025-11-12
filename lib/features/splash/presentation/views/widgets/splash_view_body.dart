@@ -57,7 +57,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         Get.off(
           () => const HomeView(),
           transition: Transition.downToUp,
-          duration: kNavigationDuration,
+          duration: kNavigationTransition,
         );
       },
     );
