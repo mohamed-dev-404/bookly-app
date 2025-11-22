@@ -1,3 +1,4 @@
+import 'package:bookly/core/constants/constsant.dart';
 import 'package:flutter/widgets.dart';
 
 class AppStyles {
@@ -25,6 +26,7 @@ class AppStyles {
 
   static const text30Regular = TextStyle(
     fontSize: 30,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w600,
+    fontFamily: kGtSectraFine,
   );
 }
