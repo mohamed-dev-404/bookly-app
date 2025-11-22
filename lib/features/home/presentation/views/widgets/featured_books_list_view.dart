@@ -1,4 +1,4 @@
-import 'package:bookly/features/home/presentation/views/widgets/featured_list_view_item.dart';
+import 'package:bookly/features/home/presentation/views/widgets/custom_book_cover.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
@@ -55,7 +55,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
             alignment: Alignment.center,
             child: SizedBox(
               height: currentHeight,
-              child: const FeaturedListViewItem(),
+              child: const CustomBookCover(),
             ),
           );
         },
