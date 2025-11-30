@@ -24,7 +24,7 @@ class AppStyles {
     fontWeight: FontWeight.normal,
   );
 
-  static const text30Regular = TextStyle(
+  static const text30SemiBold = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.w600,
     fontFamily: kGtSectraFine,
