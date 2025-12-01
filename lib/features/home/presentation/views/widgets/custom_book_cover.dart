@@ -13,7 +13,7 @@ class CustomBookCover extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           image: const DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(AssetsPaths.test),
+            image: AssetImage(AppAssets.test),
           ),
         ),
       ),

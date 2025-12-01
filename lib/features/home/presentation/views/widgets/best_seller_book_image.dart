@@ -16,7 +16,7 @@ class BestSellerBookImage extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.fill,
             image: AssetImage(
-              AssetsPaths.test,
+              AppAssets.test,
             ),
           ),
         ),

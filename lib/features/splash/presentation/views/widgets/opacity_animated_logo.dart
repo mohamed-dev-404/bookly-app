@@ -18,7 +18,7 @@ class OpacityAnimatedLogo extends StatelessWidget {
           seconds: 3,
         ),
         child: Image.asset(
-          AssetsPaths.logo,
+          AppAssets.logo,
         ),
       ),
     );
