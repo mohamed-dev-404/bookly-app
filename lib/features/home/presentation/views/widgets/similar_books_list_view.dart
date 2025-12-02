@@ -8,9 +8,9 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hight = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: hight * .17,
+      height: height * .17,
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemCount: 15,
