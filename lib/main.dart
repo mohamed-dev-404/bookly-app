@@ -1,5 +1,5 @@
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/theme.dart';
+import 'package:bookly/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {

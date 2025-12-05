@@ -10,7 +10,7 @@ class ErrorModel {
   });
 
   factory ErrorModel.fromJson(Map<String, dynamic> jsonData) {
-    String? message = jsonData[ApiKey.error][ApiKey.message];
+    String? message = jsonData[ApiKeys.error][ApiKeys.message];
 
     return ErrorModel(
       errorMessage: message ?? 'An unexpected error occurred',
