@@ -11,6 +11,8 @@ class AppLogInterceptor extends Interceptor {
     _log('Headers: ${options.headers}');
     _log('Query: ${options.queryParameters}');
     _log('Body: ${options.data}');
+    _log('=================================');
+
     super.onRequest(options, handler);
   }
 
@@ -19,6 +21,8 @@ class AppLogInterceptor extends Interceptor {
     _log('============ RESPONSE ============');
     _log('➡️  ${response.statusCode} ${response.requestOptions.path}');
     _log('Body: ${response.data}');
+    _log('=================================');
+
     super.onResponse(response, handler);
   }
 
@@ -28,6 +32,8 @@ class AppLogInterceptor extends Interceptor {
     _log('❌ ${err.type}');
     _log('StatusCode: ${err.response?.statusCode}');
     _log('Message: ${err.message}');
+    _log('=================================');
+
     super.onError(err, handler);
   }
 }

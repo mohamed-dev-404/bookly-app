@@ -1,4 +1,4 @@
-class EndPoints {
+abstract class EndPoints {
   //? Base URL
   static String baseUrl = 'https://www.googleapis.com/books/v1/';
 

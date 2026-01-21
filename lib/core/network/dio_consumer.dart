@@ -1,8 +1,14 @@
+import 'package:bookly/core/errors/exceptions/api_exception.dart';
 import 'package:bookly/core/errors/handlers/dio_exception_handler.dart';
+import 'package:bookly/core/errors/models/error_model.dart';
 import 'package:bookly/core/network/api_consumer.dart';
 import 'package:bookly/core/network/constant/api_endpoints.dart';
-import 'package:bookly/core/network/interceptors/api_interceptor.dart';
+import 'package:bookly/core/network/interceptors/header_interceptor.dart';
 import 'package:bookly/core/network/interceptors/app_log_interceptor.dart';
+import 'package:bookly/core/network/interceptors/auth_interceptor.dart';
+import 'package:bookly/core/network/interceptors/network_interceptor.dart';
+import 'package:bookly/core/network/interceptors/retry_interceptor.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,8 +17,13 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
-    dio.interceptors.add(ApiInterceptor());
-
+    dio.options
+      ..connectTimeout = const Duration(seconds: 20)
+      ..receiveTimeout = const Duration(seconds: 20);
+    dio.interceptors.add(HeaderInterceptor());
+    dio.interceptors.add(NetworkInterceptor(Connectivity()));
+    dio.interceptors.add(AuthInterceptor(dio));
+    dio.interceptors.add(RetryInterceptor(dio, maxRetries: 5));
     if (!kReleaseMode) {
       dio.interceptors.add(AppLogInterceptor());
     }
@@ -31,8 +42,8 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } catch (e) {
+      _handleException(e);
     }
   }
 
@@ -50,8 +61,8 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } catch (e) {
+      _handleException(e);
     }
   }
 
@@ -69,8 +80,8 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } catch (e) {
+      _handleException(e);
     }
   }
 
@@ -88,8 +99,8 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } catch (e) {
+      _handleException(e);
     }
   }
 
@@ -107,8 +118,21 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } catch (e) {
+      _handleException(e);
     }
+  }
+
+  Never _handleException(Object e) {
+    if (e is DioException) {
+      handleDioExceptions(
+        e,
+      ); // throw suitable ApiException based on DioException type
+    }
+    throw ApiException(
+      errorModel: ErrorModel(
+        errorMessage: e.toString(),
+      ),
+    );
   }
 }
